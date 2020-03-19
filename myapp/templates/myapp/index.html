@@ -1,0 +1,56 @@
+{% load static %}
+<html>
+    <head>
+        <title>Blog app</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5e4b755b2982740012e5f415&product=inline-share-buttons" async="async"></script>
+        <link rel="stylesheet" href="{% static 'css/myapp.css' %}">
+       
+
+<!-- to prevent form submission multiple times ---->
+        <script>
+if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
+</script>
+
+    </head>
+
+
+<body>
+        <!--header-->
+        <div class="page-header">
+            {% if user.is_authenticated %}
+            <a href="#" class="top-menu" ><span class="glyphicon glyphicon-plus"></span></a>
+            {% else %}
+            <a href="" class="top-menu " >Login</a>
+            {% endif %}
+            <h1><a href="">JK Educations</a>
+                <a href="#">Blogs</a>
+                {% if user.is_authenticated %}
+                	<a href="#">Myblogs</a>
+                	<a href="{% url 'myapp:logout'%} ">logout</a>
+                {% else %}
+                	<a href="#">Signup</a>
+
+
+                {% endif %}
+            </h1>
+        </div>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8 content middle-block">
+                {% block content %}
+                {% endblock %}
+                </div>
+            </div>
+        </div>
+
+
+    
+
+    
+</html>
